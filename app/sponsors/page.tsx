@@ -39,10 +39,10 @@ const donationTargets = [
   {
     icon: Flame,
     accentColor: '#C06E52',
-    name: 'Formula Combustion',
+    name: 'Formula Internal Combustion',
     onlineAccount: '02-511361-50000',
     checkPayee: 'TEXAS A&M FSAE IC',
-    handbookUrl: 'https://static1.squarespace.com/static/5ad567678ab72281aed39764/t/669066cbcb47fc486bcc4204/1720739534441/24-25+FSAE+Sponsor+Packet.pdf'
+    handbookUrl: 'https://drive.google.com/file/d/1bikA9h-xIrBedOfLVVCscDkTqM294U8_/view?usp=sharing'
   },
   {
     icon: Zap,
@@ -58,7 +58,7 @@ const donationTargets = [
     name: 'Baja SAE',
     onlineAccount: '02-511361-20000',
     checkPayee: 'TEXAS A&M BAJA SAE',
-    handbookUrl: 'https://static1.squarespace.com/static/5ad567678ab72281aed39764/t/6133d6847a172e50d6b5176b/1630787206154/Baja+Sponsor+Flyer+2022.pdf'
+    handbookUrl: 'https://drive.google.com/file/d/1jMRlpt_hSlXanQgFwJeCKH2LGBCkzdUj/view?usp=sharing'
   },
 ]
 

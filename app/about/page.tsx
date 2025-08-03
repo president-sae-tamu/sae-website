@@ -49,7 +49,7 @@ const AboutPage = () => {
               Our Mission
             </motion.h1>
             <motion.p className={styles.description} variants={itemVariants}>
-              Texas A&M&apos;s Society of Automotive Engineers Chapter ( TAMU SAE), is a non-profit educational and scientific organization dedicated to advancing mobility technology to better serve humanity. The goal of our organization is to provide students with exposure and hands on experience that they will be able to apply in all aspects of their life. 
+              Texas A&M&apos;s Society of Automotive Engineers Chapter (TAMU SAE), is a non-profit educational and scientific organization dedicated to advancing mobility technology to better serve humanity. The goal of our organization is to provide students with exposure and hands on experience that they will be able to apply in all aspects of their life. 
             </motion.p>
           </motion.section>
 

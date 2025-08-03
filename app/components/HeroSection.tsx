@@ -6,8 +6,8 @@ import { motion, AnimatePresence, Variants } from 'framer-motion'
 import styles from './HeroSection.module.css'
 
 const teams = [
-  { id: 'ic', name: 'Formula Combustion' },
-  { id: 'ev', name: 'Formula Electric' },
+  { id: 'ic', name: 'Formula IC' },
+  { id: 'ev', name: 'Formula EV' },
   { id: 'baja', name: 'Baja SAE' },
 ]
 

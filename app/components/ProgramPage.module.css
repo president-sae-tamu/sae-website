@@ -181,6 +181,12 @@
   font-weight: 500;
 }
 
+.getInvolvedGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .contactCard {
   display: flex;
   align-items: center;
@@ -193,7 +199,11 @@
 }
 
 .contactCard:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
 }
 
 .contactCard svg {

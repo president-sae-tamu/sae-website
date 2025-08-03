@@ -10,12 +10,12 @@ import styles from './Footer.module.css'
 const SOCIAL_LINKS = {
   linkedin: 'https://www.linkedin.com/company/tamusae/',
   linktree: 'https://linktr.ee/saetamu',
-  mail: 'mailto:tamusae@tamu.edu'
 }
 const CONTACT_EMAIL = 'tamusae@tamu.edu'
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const [emailCopied, setEmailCopied] = useState(false)
 
   const toggleVisibility = () => {
     if (window.pageYOffset > 400) {
@@ -35,6 +35,25 @@ const Footer = () => {
       top: 0,
       behavior: 'smooth',
     })
+  }
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL)
+      setEmailCopied(true)
+      setTimeout(() => setEmailCopied(false), 5000) // Reset after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy email: ', err)
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea')
+      textArea.value = CONTACT_EMAIL
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      setEmailCopied(true)
+      setTimeout(() => setEmailCopied(false), 5000)
+    }
   }
 
   return (
@@ -57,16 +76,20 @@ const Footer = () => {
                 <span>Recruitment</span>
                 <Image src="/icons/recruitment.svg" alt="" width={16} height={16} />
               </Link>
-              <a href={`mailto:${CONTACT_EMAIL}`} className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}>
-                <span>Contact us</span>
-                <Image src="/icons/contact.svg" alt="" width={16} height={16} />
-              </a>
+              <button 
+                onClick={copyEmail}
+                className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}
+                type="button"
+              >
+                <span>{emailCopied ? 'Email Copied!' : 'Contact us'}</span>
+                {!emailCopied && <Image src="/icons/contact.svg" alt="" width={16} height={16} />}
+              </button>
             </div>
           </motion.div>
 
           <div className={styles.bottomBar}>
             <div className={styles.logo}>
-              <Image src="/SAE_logo.png" alt="SAE Texas A&M Logo" width={84} height={39} quality={100} className={styles.logoImage}/>
+              <Image src="/SAE_logo.svg" alt="SAE Texas A&M Logo" width={84} height={39} quality={100} className={styles.logoImage}/>
             </div>
             <div className={styles.socialIcons}>
               <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -74,9 +97,6 @@ const Footer = () => {
               </a>
               <a href={SOCIAL_LINKS.linktree} target="_blank" rel="noopener noreferrer" aria-label="Linktree">
                 <LinkIcon className={styles.socialIcon} />
-              </a>
-              <a href={SOCIAL_LINKS.mail} target="_blank" rel="noopener noreferrer" aria-label="Mail">
-                <Mail className={styles.socialIcon} />
               </a>
             </div>
           </div>

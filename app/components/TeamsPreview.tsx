@@ -8,14 +8,14 @@ import styles from './TeamsPreview.module.css'
 const teams = [
     {
     id: 'ic',
-    name: 'Formula Combustion',
-    description: 'With a legacy of performance, our Formula Combustion team masters the art of the internal combustion engine.',
-    image: '/images/ic/preview.jpg',
+    name: 'Formula IC',
+    description: 'With a legacy of performance, our Formula Internal Combustion team masters the art of the internal combustion engine.',
+    image: '/images/ic/preview.jpeg',
     slug: '/ic'
   },
   {
     id: 'ev',
-    name: 'Formula Electric',
+    name: 'Formula EV',
     description: 'Pioneering the future of racing, the Formula Electric team develops lightning-fast, sustainable racecars.',
     image: '/images/ev/preview.jpg',
     slug: '/ev'

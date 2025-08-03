@@ -4,7 +4,7 @@ const pageData = {
   title: "Formula Internal Combustion",
   tagline: "Where precision engineering meets raw power.",
 
-  description: "The FSAE IC program at Texas A&M offers engineering students the opportunity to be part of a team that designs, builds, and tests a formula-style race car as part of the Senior Capstone Design course. This enables students to thoroughly learn and apply the principles of design, project management, and business towards engineering a competitive vehicle. Our program has won 8 championships since our inaugral year in 1999.",
+  description: "Established in 1998, the Texas A&M Formula IC Team has dominated across decades with 8 competition wins and 14 top 5 finishes. Every year, we design, manufacture, and test a brand new formula style race car powered by an internal combustion engine, optimizing every component for speed, efficiency, and reliability.",
 
   mission: "To develop exceptional engineers through innovative formula race car design and competition. Each year, our senior engineering students start with a clean slate, fostering creative freedom and unique problem-solving that prepares them for industry leadership while pursuing excellence in Formula SAE competition.",
   competitionEvents: [
@@ -26,31 +26,31 @@ const pageData = {
     'Suspension',
   ],
   images: [
-    '/images/ic/showcase/ic-comp-celebration.jpg',
-    '/images/ic/showcase/ic-smoke.jpg',
+    '/images/ic/showcase/ic-25-panning.jpg',
+    '/images/ic/showcase/ic-25-team.jpg',
     '/images/ic/showcase/ic-comp.jpg',
-    '/images/ic/showcase/ic-rellis-close.jpg',
-    '/images/ic/showcase/ic-testing.jpg',
-    '/images/ic/showcase/ic-turn.jpg'
+    '/images/ic/showcase/ic-25-70.jpg',
+    '/images/ic/showcase/ic-25-57.jpg',
+    '/images/ic/showcase/ic-25-72.jpg',
   ],
 
   history: [
     {
       year: '2024-2025',
       achievement: '2nd Place Overall at FSAE Michigan',
-      details: 'A top-tier performance with strong results across all categories, including 4th in Endurance and 8th in Design.',
-      
+      details: 'A top-tier performance with strong results across all categories, including 4th in Endurance and 5th in Skidpad.',
+      carImage: '/images/ic/showcase/history/25.jpg'
     },
     {
       year: '2023-2024',
-      achievement: '1st Place in Autocross',
-      details: 'Strong autocross performance but faced endurance challenges, finishing 27th overall.',
+      achievement: '5th Place Overall & 1st in Acceleration',
+      details: 'A strong acceleration performance carried the car to a greatly-improved top 5 finish.',
       carImage: '/images/ic/showcase/history/24.jpeg'
     },
     {
       year: '2022-2023',
       achievement: '5th Place in Autocross',
-      details: 'Continued competitive development with focus on reliability improvements.',
+      details: 'A strong autocross performance once again led the team to 27th overall.',
       carImage: '/images/ic/showcase/history/23.jpg'
     },
     {
@@ -92,8 +92,8 @@ const pageData = {
     },
     {
       year: '2015-2016',
-      achievement: '14th Overall with Strong Dynamic Performance',
-      details: '2nd place finishes in Acceleration and Autocross demonstrated competitive speed.'
+      achievement: '7th in Autocross',
+      details: 'A strong autocross performance but endurance challenges kept us at 25th overall in Lincoln.'
     },
     {
       year: '2010-2011',
@@ -115,8 +115,19 @@ const pageData = {
       achievement: 'National Champions',
       details: ''
     },
-
-  ]
+    {
+      year: '1999-2000',
+      achievement: 'National Champions',
+      details: '',
+    },
+    {
+      year: '1998-1999',
+      achievement: 'Rookie Season',
+      details: 'Winner of the William C. Mitchell Rookie Award',
+    },
+  ],
+  instagramUrl: "https://www.instagram.com/tamu.formula.sae/",
+  linktreeUrl: "https://linktr.ee/tamuformulasae"
 };
 
 const FormulaCombustionPage = () => {
@@ -131,6 +142,8 @@ const FormulaCombustionPage = () => {
       images={pageData.images}
       history={pageData.history}
       subTeams={pageData.subTeams}
+      instagramUrl={pageData.instagramUrl}
+      linktreeUrl={pageData.linktreeUrl}
     />
   );
 };

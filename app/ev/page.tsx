@@ -33,10 +33,10 @@ const pageData = {
   // --- Image Gallery ---
   images: [
     '/images/ev/showcase/25_Speed.jpg',
-    '/images/ev/showcase/preview.svg',
+    '/images/ev/showcase/25_Side.jpg',
     '/images/ev/showcase/25_Aero.jpg',
     '/images/ev/showcase/25-comp-back.jpg',
-    '/images/ev/showcase/pitcrew.jpg',
+    '/images/ev/showcase/25-93.jpg',
     '/images/ev/showcase/24-lighting.jpg'
   ],
 
@@ -66,7 +66,9 @@ const pageData = {
       details: 'The team was established, laying the groundwork for future electric vehicle development and competition.',
       carImage: '/images/ev/showcase/history/22.jpg'
     }
-  ]
+  ],
+  instagramUrl: "https://www.instagram.com/tamuformulaelectric/",
+  linktreeUrl: "https://linktr.ee/tamu_formulaelectric",
 };
 
 const FormulaElectricPage = () => {
@@ -81,6 +83,8 @@ const FormulaElectricPage = () => {
       contactEmail={pageData.contactEmail}
       images={pageData.images}
       history={pageData.history}
+      instagramUrl={pageData.instagramUrl}
+      linktreeUrl={pageData.linktreeUrl}
     />
   );
 };

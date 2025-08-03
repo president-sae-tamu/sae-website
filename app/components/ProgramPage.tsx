@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { motion, AnimatePresence, Variants } from 'framer-motion'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
-import { Camera, Mail, X } from 'lucide-react'
+import { Camera, Mail, X, Instagram, Link as LinkIcon } from 'lucide-react'
 import styles from './ProgramPage.module.css'
 
 interface CompetitionEvent {
@@ -30,6 +30,8 @@ interface ProgramPageProps {
   contactEmail: string;
   images?: string[];
   history?: HistoryItem[];
+  instagramUrl?: string;
+  linktreeUrl?: string;
 }
 
 const containerVariants: Variants = { 
@@ -76,8 +78,28 @@ const ImageModal = ({ imageUrl, onClose }: { imageUrl: string; onClose: () => vo
   )
 }
 
-const ProgramPage = ({ title, tagline, description, mission, subTeams, competitionEvents, contactEmail, images, history }: ProgramPageProps) => {
+const ProgramPage = ({ title, tagline, description, mission, subTeams, competitionEvents, contactEmail, images, history, instagramUrl, linktreeUrl }: ProgramPageProps) => {
   const [modalImage, setModalImage] = useState<string | null>(null)
+  const [emailCopied, setEmailCopied] = useState(false)
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contactEmail)
+      setEmailCopied(true)
+      setTimeout(() => setEmailCopied(false), 5000)
+    } catch (err) {
+      console.error('Failed to copy email: ', err)
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea')
+      textArea.value = contactEmail
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      setEmailCopied(true)
+      setTimeout(() => setEmailCopied(false), 5000)
+    }
+  }
 
   return (
     <>
@@ -155,13 +177,43 @@ const ProgramPage = ({ title, tagline, description, mission, subTeams, competiti
 
                   <motion.div variants={itemVariants}>
                     <h3>Get Involved</h3>
-                    <a href={`mailto:${contactEmail}`} className={styles.contactCard}>
-                      <Mail />
-                      <div>
-                        <h4>Have Questions?</h4>
-                        <p>Contact us for information on newsletters, student involvement, or industry partnerships.</p>
-                      </div>
-                    </a>
+                    <div className={styles.getInvolvedGrid}>
+
+                      {/* Add Instagram Card */}
+                      {instagramUrl && (
+                        <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className={styles.contactCard}>
+                          <Instagram />
+                          <div>
+                            <h4>Follow Our Journey</h4>
+                            <p>Check out our Instagram for the latest updates, photos, and behind-the-scenes content.</p>
+                          </div>
+                        </a>
+                      )}
+
+                      {/* Add Linktree Card */}
+                      {linktreeUrl && (
+                        <a href={linktreeUrl} target="_blank" rel="noopener noreferrer" className={styles.contactCard}>
+                          <LinkIcon />
+                          <div>
+                            <h4>All Our Links</h4>
+                            <p>Find links to everything you would need on our Linktree.</p>
+                          </div>
+                        </a>
+                      )}
+
+                      <a onClick={copyEmail} className={styles.contactCard}>
+                        <Mail />
+                        <div>
+                          <h4>{emailCopied ? 'Email Copied!' : 'Have Questions?'}</h4>
+                          <p>
+                            {emailCopied 
+                              ? `${contactEmail} copied to clipboard! Feel free to shoot us a message.`
+                              : `Contact ${contactEmail} for information on newsletters, student involvement, or industry partnerships.`
+                            }
+                          </p>
+                        </div>
+                      </a>
+                    </div>
                   </motion.div>
                 </motion.section>
 

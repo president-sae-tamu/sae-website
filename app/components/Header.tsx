@@ -69,7 +69,7 @@ const Header = () => {
 
         <div className={styles.logo}>
           <Link href="/">
-            <Image src="/SAE_logo.png" alt="TAMU SAE Logo" width={84} height={39} quality={100} className={styles.logoImage}/>
+            <Image src="/SAE_logo.svg" alt="TAMU SAE Logo" width={84} height={50} quality={100} className={styles.logoImage}/>
           </Link>
         </div>
 
