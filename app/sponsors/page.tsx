@@ -28,37 +28,74 @@ const useIsMobile = (breakpoint: number = 768) => {
   return isMobile
 }
 
-const donationTargets = [
-    {
+interface DonationStep {
+  text: React.ReactNode
+  code?: string
+}
+
+interface DonationTarget {
+  icon: typeof Building2
+  accentColor: string
+  name: string
+  donateUrl: string
+  steps: DonationStep[]
+  checkPayee: string
+  handbookUrl?: string
+}
+
+const donationTargets: DonationTarget[] = [
+  {
     icon: Building2,
     accentColor: '#6F8695',
     name: 'SAE General Fund',
-    onlineAccount: '947340-00000',
-    checkPayee: 'TEXAS A&M SOCIETY OF AUTOMOTIVE ENGINEERS GENERAL FUND'
+    donateUrl: 'https://www.txamfoundation.com/give.aspx',
+    checkPayee: 'TEXAS A&M SOCIETY OF AUTOMOTIVE ENGINEERS GENERAL FUND',
+    steps: [
+      { text: <>Click the <strong>&quot;Donate Online&quot;</strong> button below.</> },
+      { text: <>Select <strong>&quot;Student Organization Gifts.&quot;</strong></> },
+      { text: <>In the gift notes field, enter:</>, code: 'Society of Automotive Engineers (SAE) Racing Teams' },
+      { text: 'Complete your payment details.' },
+    ],
   },
   {
     icon: Flame,
     accentColor: '#C06E52',
     name: 'Formula Internal Combustion',
-    onlineAccount: '02-511361-50000',
+    donateUrl: 'https://www.txamfoundation.com/give.aspx',
     checkPayee: 'TEXAS A&M FSAE IC',
-    handbookUrl: 'https://drive.google.com/file/d/1bikA9h-xIrBedOfLVVCscDkTqM294U8_/view?usp=sharing'
+    handbookUrl: 'https://drive.google.com/file/d/1bikA9h-xIrBedOfLVVCscDkTqM294U8_/view?usp=sharing',
+    steps: [
+      { text: <>Click the <strong>&quot;Donate Online&quot;</strong> button below.</> },
+      { text: <>Select <strong>&quot;Student Organization Gifts.&quot;</strong></> },
+      { text: <>In the gift notes field, enter:</>, code: '02-511361-50000' },
+      { text: 'Complete your payment details.' },
+    ],
   },
   {
     icon: Zap,
     accentColor: '#0D324D',
     name: 'Formula Electric',
-    onlineAccount: '02-511361-60000',
+    donateUrl: 'http://give.am/TAMUFormulaSAEElectricRacing',
     checkPayee: 'TEXAS A&M FSAE ELECTRIC',
-    handbookUrl: 'https://drive.google.com/file/d/1uG5UPUCPfuCmp9lavbCCXcnsCJo0duR0/view'
+    handbookUrl: 'https://drive.google.com/file/d/1uG5UPUCPfuCmp9lavbCCXcnsCJo0duR0/view',
+    steps: [
+      { text: <>Click the <strong>&quot;Donate Online&quot;</strong> button below.</> },
+      { text: <>Fill out the donation form with your details. That&apos;s it!</> },
+    ],
   },
   {
     icon: Mountain,
     accentColor: '#2F4B26',
     name: 'Baja SAE',
-    onlineAccount: '02-511361-20000',
+    donateUrl: 'https://www.txamfoundation.com/give.aspx',
     checkPayee: 'TEXAS A&M BAJA SAE',
-    handbookUrl: 'https://drive.google.com/file/d/1jMRlpt_hSlXanQgFwJeCKH2LGBCkzdUj/view?usp=sharing'
+    handbookUrl: 'https://drive.google.com/file/d/1jMRlpt_hSlXanQgFwJeCKH2LGBCkzdUj/view?usp=sharing',
+    steps: [
+      { text: <>Click the <strong>&quot;Donate Online&quot;</strong> button below.</> },
+      { text: <>Select <strong>&quot;Student Organization Gifts.&quot;</strong></> },
+      { text: <>In the gift notes field, enter:</>, code: '511361-20000' },
+      { text: 'Complete your payment details.' },
+    ],
   },
 ]
 
@@ -137,22 +174,26 @@ const SponsorsPage = () => {
                       </>
                     ) : (
                       <>
-                        <h4>Instructions for Card Donations:</h4>
+                        <h4>How to Donate Online:</h4>
                         <ol>
-                          <li>Click the &quot;Donate Online&quot; button below.</li>
-                          <li>Under &quot;I Would Like To Give To,&quot; select <strong>Unlisted Account</strong>.</li>
-                          <li>In &quot;Giving Account Name or Number,&quot; enter:</li>
-                          <div className={styles.codeBox}>
-                            <span>{target.onlineAccount}</span>
-                            <CopyButton textToCopy={target.onlineAccount} />
-                          </div>
+                          {target.steps.map((step, i) => (
+                            <li key={i}>
+                              {step.text}
+                              {step.code && (
+                                <div className={styles.codeBox}>
+                                  <span>{step.code}</span>
+                                  <CopyButton textToCopy={step.code} />
+                                </div>
+                              )}
+                            </li>
+                          ))}
                         </ol>
                       </>
                     )}
                   </div>
                   <div className={styles.cardActions}>
                     {activeMethod[target.name] !== 'check' && (
-                      <a href="https://www.txamfoundation.com/give.aspx" target="_blank" rel="noopener noreferrer" className={styles.donateButton}>
+                      <a href={target.donateUrl} target="_blank" rel="noopener noreferrer" className={styles.donateButton}>
                         Donate Online <ArrowRight size={16} />
                       </a>
                     )}
